@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>S3 Object Uploader - Student Assignment</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; }
+  h2 { color: #333; }
+  input[type=file] { margin: 15px 0; }
+  button { padding: 10px 20px; background: #ff9900; border: none; color: #fff; cursor: pointer; }
+  button:hover { background: #e88b00; }
+  .msg { margin-top: 15px; padding: 10px; border-radius: 4px; }
+</style>
+</head>
+<body>
+  <h2>Upload a File to S3</h2>
+  <p>This form uploads a file from EC2 to your S3 bucket. Once uploaded, S3 will trigger
+     a Lambda function that reads the object's metadata and publishes a notification to SNS,
+     which emails all subscribers.</p>
+
+  <form action="s3upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileToUpload" required>
+    <br>
+    <button type="submit">Upload to S3</button>
+  </form>
+</body>
+</html>
