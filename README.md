@@ -79,11 +79,11 @@ A user uploads a file through a PHP web application hosted on an Amazon EC2 inst
 
 ```
 .
-├── index.html          # File upload form
-├── s3upload.php        # Uploads files to Amazon S3
-├── lambda_function.py  # Processes S3 events
+├── index.html         
+├── s3upload.php        
+├── lambda_function.py 
 ├── README.md
-└── screenshots/
+└── AWS Event-Driven File Upload Notification System 
 ```
 
 ---
