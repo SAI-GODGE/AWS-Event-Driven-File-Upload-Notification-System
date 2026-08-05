@@ -78,7 +78,7 @@ A user uploads a file through a PHP web application hosted on an Amazon EC2 inst
 ## 📁 Project Structure
 
 ```
-.
+AWS-Event-Driven-File-Upload-Notification-System
 ├── index.html         
 ├── s3upload.php        
 ├── lambda_function.py 
