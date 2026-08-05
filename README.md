@@ -83,6 +83,7 @@ A user uploads a file through a PHP web application hosted on an Amazon EC2 inst
 ├── s3upload.php        
 ├── lambda_function.py 
 ├── README.md
+├── Task.pdf 
 └── AWS Event-Driven File Upload Notification System 
 ```
 
