@@ -149,5 +149,3 @@ Through this project, I gained hands-on experience with:
 ## 👨‍💻 Author
 
 **Saiprasad Sambhaji Godge**
-
-If you found this project helpful, feel free to ⭐ the repository and share your feedback!
