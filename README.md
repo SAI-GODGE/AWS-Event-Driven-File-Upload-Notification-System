@@ -115,39 +115,6 @@ The project follows AWS best practices by using IAM Roles instead of storing AWS
 
 ---
 
-## 📷 Project Screenshots
-
-Create a folder named **screenshots** and include images such as:
-
-- Architecture Diagram
-- S3 Bucket
-- SNS Topic
-- Lambda Function
-- IAM Roles
-- Event Notification Configuration
-- EC2 Instance
-- PHP Upload Page
-- Successful Upload
-- Email Notification
-- CloudWatch Logs
-
-Example:
-
-```
-screenshots/
-│
-├── architecture.png
-├── s3-bucket.png
-├── lambda.png
-├── sns-topic.png
-├── upload-page.png
-├── upload-success.png
-├── email-notification.png
-└── cloudwatch-logs.png
-```
-
----
-
 ## ✅ Result
 
 The project successfully implements an automated event-driven file upload system using AWS.
