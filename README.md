@@ -84,7 +84,7 @@ AWS-Event-Driven-File-Upload-Notification-System
 ├── lambda_function.py 
 ├── README.md
 ├── Task.pdf 
-└── AWS Event-Driven File Upload Notification System 
+└── AWS Event-Driven File Upload Notification System.pdf 
 ```
 
 ---
