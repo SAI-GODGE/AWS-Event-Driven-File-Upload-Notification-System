@@ -23,28 +23,37 @@ The entire process runs automatically without requiring manual monitoring.
 
 ## 🏗️ Architecture
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Upload-User-2563EB?style=for-the-badge" alt="User Upload"/>
-</p>
-
 ```mermaid
 flowchart TD
-    A["User"] --> B["PHP Web Application<br/>Amazon EC2"]
-    B --> C["Amazon S3<br/>File Storage"]
-    C -->|"ObjectCreated Event"| D["AWS Lambda<br/>Python 3.12"]
-    D -->|"Read File Metadata"| C
-    D -->|"Publish Message"| E["Amazon SNS"]
-    E --> F["Email Notification"]
-    D --> G["Amazon CloudWatch<br/>Execution Logs"]
+    U(["👤 User"]) -->|"Uploads file"| EC2["🖥️ Amazon EC2<br/>PHP Web Application"]
 
-    style A fill:#E8F2FF,stroke:#2563EB,color:#111827
-    style B fill:#E8F2FF,stroke:#2563EB,color:#111827
-    style C fill:#FFF4E5,stroke:#F59E0B,color:#111827
-    style D fill:#E6F9ED,stroke:#16A34A,color:#111827
-    style E fill:#FFF4E5,stroke:#F59E0B,color:#111827
-    style F fill:#E8F2FF,stroke:#2563EB,color:#111827
-    style G fill:#F3E8FF,stroke:#9333EA,color:#111827
+    EC2 -->|"AWS SDK for PHP"| S3[("🪣 Amazon S3<br/>File Storage")]
+
+    S3 -->|"ObjectCreated Event"| Lambda["⚡ AWS Lambda<br/>Python 3.12"]
+
+    Lambda -->|"Extracts file details"| Process["📄 Process Upload Metadata"]
+
+    Process -->|"Publish notification"| SNS["📨 Amazon SNS<br/>Notification Topic"]
+
+    SNS -->|"Email subscription"| Email(["📧 Email Notification"])
+
+    Lambda -.->|"Execution logs"| CW[("📊 Amazon CloudWatch<br/>Logs")]
+
+    classDef user fill:#E8F2FF,stroke:#2563EB,color:#1E3A8A,stroke-width:2px
+    classDef compute fill:#FFF4E5,stroke:#F59E0B,color:#92400E,stroke-width:2px
+    classDef storage fill:#FFF4E5,stroke:#D97706,color:#92400E,stroke-width:2px
+    classDef serverless fill:#E6F9ED,stroke:#16A34A,color:#166534,stroke-width:2px
+    classDef messaging fill:#FCE7F3,stroke:#DB2777,color:#9D174D,stroke-width:2px
+    classDef monitoring fill:#F3E8FF,stroke:#9333EA,color:#6B21A8,stroke-width:2px
+
+    class U,Email user
+    class EC2 compute
+    class S3 storage
+    class Lambda,Process serverless
+    class SNS messaging
+    class CW monitoring
 ```
+
 
 ## 🛠️ AWS Services
 
