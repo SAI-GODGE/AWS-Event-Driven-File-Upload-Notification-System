@@ -21,7 +21,7 @@ Users upload files through a PHP web application hosted on Amazon EC2. Amazon S3
 
 The entire process runs automatically without requiring manual monitoring.
 
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart TD
