@@ -1,4 +1,4 @@
-# 📂 AWS Event-Driven File Upload Notification System
+<h1 align="center">AWS Event-Driven File Upload Notification System</h1>
 
 <p align="center">
   <b>An automated, event-driven file upload system that sends email notifications using AWS serverless services.</b>
