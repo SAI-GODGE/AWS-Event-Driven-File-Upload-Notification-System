@@ -165,8 +165,3 @@ This project demonstrates practical experience in event-driven architecture, ser
 - Integrating PHP applications with AWS SDK.
 - Building automated workflows using AWS services.
 
----
-
-<p align="center">
-  <b>Built as a hands-on AWS and DevOps learning project.</b>
-</p>
