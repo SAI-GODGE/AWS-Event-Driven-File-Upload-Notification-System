@@ -9,7 +9,6 @@
   <img src="https://img.shields.io/badge/PHP-Web%20Application-777BB4?logo=php&logoColor=white" alt="PHP"/>
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python"/>
   <img src="https://img.shields.io/badge/Architecture-Event--Driven-blueviolet" alt="Event Driven Architecture"/>
-  <img src="https://img.shields.io/badge/Status-Completed-success" alt="Completed"/>
 </p>
 
 ---
