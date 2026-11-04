@@ -170,7 +170,3 @@ This project demonstrates practical experience in event-driven architecture, ser
 <p align="center">
   <b>Built as a hands-on AWS and DevOps learning project.</b>
 </p>
-
-<p align="center">
-  <i>Developed by Saiprasad Sambhaji Godge</i>
-</p>
