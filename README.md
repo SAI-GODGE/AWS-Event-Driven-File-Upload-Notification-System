@@ -1,152 +1,176 @@
 # 📂 AWS Event-Driven File Upload Notification System
 
-An event-driven file upload application built using AWS services that automatically sends email notifications whenever a user uploads a file.
+<p align="center">
+  <b>An automated, event-driven file upload system that sends email notifications using AWS serverless services.</b>
+</p>
 
-Instead of manually checking whether a file has been uploaded, the system automatically processes the upload, triggers a serverless function, and sends the file details via email.
+<p align="center">
+  <img src="https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws&logoColor=white" alt="AWS"/>
+  <img src="https://img.shields.io/badge/PHP-Web%20Application-777BB4?logo=php&logoColor=white" alt="PHP"/>
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Architecture-Event--Driven-blueviolet" alt="Event Driven Architecture"/>
+  <img src="https://img.shields.io/badge/Status-Completed-success" alt="Completed"/>
+</p>
 
 ---
 
 ## 🚀 Project Overview
 
-This project demonstrates how multiple AWS services work together to create an automated event-driven workflow.
+This project demonstrates how AWS services can be integrated to build an automated file upload and email notification system.
 
-A user uploads a file through a PHP web application hosted on an Amazon EC2 instance. The file is stored in an Amazon S3 bucket, which triggers an AWS Lambda function. Lambda extracts the uploaded file's metadata and publishes it to an Amazon SNS topic. SNS then sends an email notification to all subscribed users.
+Users upload files through a PHP web application hosted on Amazon EC2. Amazon S3 stores the uploaded files and automatically triggers an AWS Lambda function. Lambda extracts the file details and publishes a notification to Amazon SNS, which sends an email to subscribed users.
 
----
+The entire process runs automatically without requiring manual monitoring.
 
 ## 🏗️ Architecture
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Upload-User-2563EB?style=for-the-badge" alt="User Upload"/>
+</p>
+
+```mermaid
+flowchart TD
+    A["User"] --> B["PHP Web Application<br/>Amazon EC2"]
+    B --> C["Amazon S3<br/>File Storage"]
+    C -->|"ObjectCreated Event"| D["AWS Lambda<br/>Python 3.12"]
+    D -->|"Read File Metadata"| C
+    D -->|"Publish Message"| E["Amazon SNS"]
+    E --> F["Email Notification"]
+    D --> G["Amazon CloudWatch<br/>Execution Logs"]
+
+    style A fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style B fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style C fill:#FFF4E5,stroke:#F59E0B,color:#111827
+    style D fill:#E6F9ED,stroke:#16A34A,color:#111827
+    style E fill:#FFF4E5,stroke:#F59E0B,color:#111827
+    style F fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style G fill:#F3E8FF,stroke:#9333EA,color:#111827
 ```
-                User
-                  │
-                  ▼
-      PHP Web Application (EC2)
-                  │
-                  ▼
-          Amazon S3 Bucket
-                  │
-     ObjectCreated Event Trigger
-                  │
-                  ▼
-            AWS Lambda
-                  │
-      Read Uploaded File Metadata
-                  │
-                  ▼
-             Amazon SNS
-                  │
-                  ▼
-          Email Notification
+
+## 🛠️ AWS Services
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=aws" alt="Amazon Web Services" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Amazon EC2"/>
+  <img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white" alt="Amazon S3"/>
+  <img src="https://img.shields.io/badge/AWS%20Lambda-FF9900?style=for-the-badge&logo=awslambda&logoColor=white" alt="AWS Lambda"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Amazon%20SNS-FF4F8B?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Amazon SNS"/>
+  <img src="https://img.shields.io/badge/AWS%20IAM-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS IAM"/>
+  <img src="https://img.shields.io/badge/CloudWatch-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Amazon CloudWatch"/>
+</p>
+
+## 💻 Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Cloud Platform | Amazon Web Services |
+| Web Application | PHP, HTML |
+| Serverless Computing | AWS Lambda, Python 3.12 |
+| File Storage | Amazon S3 |
+| Messaging | Amazon SNS |
+| Web Server | Apache HTTP Server |
+| Operating System | Amazon Linux 2023 |
+| SDK & Package Manager | AWS SDK for PHP, Composer |
+
+## 🔄 Workflow
+
+```mermaid
+flowchart TD
+    A["1. User uploads a file"] --> B["2. PHP application uploads to S3"]
+    B --> C["3. S3 generates an upload event"]
+    C --> D["4. Lambda reads file metadata"]
+    D --> E["5. Lambda publishes to SNS"]
+    E --> F["6. SNS sends email notification"]
+    D --> G["7. CloudWatch records execution logs"]
+
+    style A fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style B fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style C fill:#FFF4E5,stroke:#F59E0B,color:#111827
+    style D fill:#E6F9ED,stroke:#16A34A,color:#111827
+    style E fill:#FFF4E5,stroke:#F59E0B,color:#111827
+    style F fill:#E8F2FF,stroke:#2563EB,color:#111827
+    style G fill:#F3E8FF,stroke:#9333EA,color:#111827
 ```
-
----
-
-## 🛠️ AWS Services Used
-
-- Amazon EC2
-- Amazon S3
-- AWS Lambda
-- Amazon SNS
-- AWS IAM
-- Amazon CloudWatch
-
----
-
-## 💻 Technologies Used
-
-- PHP
-- Python 3.12
-- AWS SDK for PHP
-- Composer
-- Apache HTTP Server
-- Amazon Linux 2023
-
----
-
-## 📋 Workflow
-
-1. User uploads a file using the PHP web application.
-2. The application uploads the file to an Amazon S3 bucket.
-3. S3 automatically triggers an AWS Lambda function.
-4. Lambda reads the uploaded file metadata.
-5. Lambda publishes the information to an Amazon SNS topic.
-6. SNS sends an email notification to subscribed users.
-7. CloudWatch stores execution logs for monitoring and troubleshooting.
-
----
 
 ## 📁 Project Structure
 
-```
-AWS-Event-Driven-File-Upload-Notification-System
-├── index.html         
-├── s3upload.php        
-├── lambda_function.py 
+```text
+AWS-Event-Driven-File-Upload-Notification-System/
+│
+├── index.html
+├── s3upload.php
+├── lambda_function.py
 ├── README.md
-├── Task.pdf 
-└── AWS Event-Driven File Upload Notification System.pdf 
+├── Task.pdf
+└── AWS Event-Driven File Upload Notification System.pdf
 ```
 
----
+## 🔐 IAM Security
 
-## 🔐 IAM Permissions
+The project uses IAM roles to grant AWS services the permissions they need, without storing AWS access keys in the application.
 
-### EC2 Role
+| IAM Role | Permissions |
+|---|---|
+| EC2 Instance Role | `s3:PutObject` |
+| Lambda Execution Role | `s3:GetObject`, `sns:Publish` |
 
-- s3:PutObject
+## ✨ Key Features
 
-### Lambda Role
+- Automated file upload and storage using Amazon S3.
+- Event-driven processing with AWS Lambda.
+- Automatic email notifications through Amazon SNS.
+- Secure IAM role-based authentication.
+- CloudWatch logging for monitoring and troubleshooting.
+- Serverless processing without manually managing compute infrastructure for Lambda.
 
-- s3:GetObject
-- sns:Publish
+## 📄 Documentation
 
-The project follows AWS best practices by using IAM Roles instead of storing AWS Access Keys inside the application.
+The complete implementation guide, including commands, configurations, screenshots, and deployment steps, is available below.
 
----
+📘 [View the Complete Deployment Guide](./AWS%20Event-Driven%20File%20Upload%20Notification%20System.pdf)
 
-## ⚙️ Key Features
+## 🎯 Skills Demonstrated
 
-- Event-driven architecture
-- Serverless processing using AWS Lambda
-- Automatic email notifications
-- Secure file uploads
-- IAM Role-based authentication
-- CloudWatch monitoring
-- Fully automated workflow
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=aws,php,python,linux,bash,git" alt="AWS, PHP, Python, Linux, Bash, Git"/>
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/Event--Driven%20Architecture-2563EB?style=for-the-badge" alt="Event-Driven Architecture"/>
+  <img src="https://img.shields.io/badge/Serverless%20Computing-16A34A?style=for-the-badge" alt="Serverless Computing"/>
+  <img src="https://img.shields.io/badge/IAM%20Security-232F3E?style=for-the-badge" alt="IAM Security"/>
+</p>
 
-## ✅ Result
+## ✅ Project Outcome
 
-The project successfully implements an automated event-driven file upload system using AWS.
+Successfully implemented an automated file upload notification system using AWS.
 
-Whenever a user uploads a file through the PHP application:
+Whenever a user uploads a file through the PHP application, the system automatically stores it in S3, processes the upload event with Lambda, and sends an email notification through SNS.
 
-- The file is stored in Amazon S3.
-- S3 automatically invokes AWS Lambda.
-- Lambda extracts the uploaded file information.
-- Amazon SNS sends an email notification.
-- CloudWatch records the execution logs.
+This project demonstrates practical experience in event-driven architecture, serverless computing, cloud integration, and automated notification workflows.
 
-This eliminates manual monitoring and demonstrates how AWS services can be combined to build scalable, serverless, event-driven applications.
+## 📚 Learning Outcomes
 
----
-
-## 🎯 Learning Outcomes
-
-Through this project, I gained hands-on experience with:
-
-- Event-driven architectures
-- AWS Lambda triggers
-- Amazon S3 event notifications
-- Amazon SNS messaging
-- IAM Roles and Policies
-- CloudWatch logging
-- PHP integration with AWS SDK
-- Building serverless workflows
+- Building event-driven cloud applications.
+- Configuring Amazon S3 event notifications.
+- Integrating AWS Lambda with S3 and SNS.
+- Managing IAM roles and permissions.
+- Monitoring serverless applications with CloudWatch.
+- Integrating PHP applications with AWS SDK.
+- Building automated workflows using AWS services.
 
 ---
 
-## 👨‍💻 Author
+<p align="center">
+  <b>Built as a hands-on AWS and DevOps learning project.</b>
+</p>
 
-**Saiprasad Sambhaji Godge**
+<p align="center">
+  <i>Developed by Saiprasad Sambhaji Godge</i>
+</p>
