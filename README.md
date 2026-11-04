@@ -21,37 +21,29 @@ Users upload files through a PHP web application hosted on Amazon EC2. Amazon S3
 
 The entire process runs automatically without requiring manual monitoring.
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 flowchart TD
-    U(["👤 User"]) -->|"Uploads file"| EC2["🖥️ Amazon EC2<br/>PHP Web Application"]
+    A["User"] --> B["Amazon EC2<br/>PHP Web Application"]
+    B --> C[("Amazon S3<br/>File Storage")]
+    C -->|"ObjectCreated Event"| D["AWS Lambda<br/>Python"]
+    D --> E["Amazon SNS"]
+    E --> F["Email Notification"]
 
-    EC2 -->|"AWS SDK for PHP"| S3[("🪣 Amazon S3<br/>File Storage")]
+    D -.-> G[("Amazon CloudWatch<br/>Logs")]
 
-    S3 -->|"ObjectCreated Event"| Lambda["⚡ AWS Lambda<br/>Python 3.12"]
+    classDef app fill:#E8F2FF,stroke:#2563EB,color:#1E3A8A
+    classDef storage fill:#FFF4E5,stroke:#D97706,color:#92400E
+    classDef compute fill:#E6F9ED,stroke:#16A34A,color:#166534
+    classDef messaging fill:#FCE7F3,stroke:#DB2777,color:#9D174D
+    classDef monitoring fill:#F3E8FF,stroke:#9333EA,color:#6B21A8
 
-    Lambda -->|"Extracts file details"| Process["📄 Process Upload Metadata"]
-
-    Process -->|"Publish notification"| SNS["📨 Amazon SNS<br/>Notification Topic"]
-
-    SNS -->|"Email subscription"| Email(["📧 Email Notification"])
-
-    Lambda -.->|"Execution logs"| CW[("📊 Amazon CloudWatch<br/>Logs")]
-
-    classDef user fill:#E8F2FF,stroke:#2563EB,color:#1E3A8A,stroke-width:2px
-    classDef compute fill:#FFF4E5,stroke:#F59E0B,color:#92400E,stroke-width:2px
-    classDef storage fill:#FFF4E5,stroke:#D97706,color:#92400E,stroke-width:2px
-    classDef serverless fill:#E6F9ED,stroke:#16A34A,color:#166534,stroke-width:2px
-    classDef messaging fill:#FCE7F3,stroke:#DB2777,color:#9D174D,stroke-width:2px
-    classDef monitoring fill:#F3E8FF,stroke:#9333EA,color:#6B21A8,stroke-width:2px
-
-    class U,Email user
-    class EC2 compute
-    class S3 storage
-    class Lambda,Process serverless
-    class SNS messaging
-    class CW monitoring
+    class A,B app
+    class C storage
+    class D compute
+    class E,F messaging
+    class G monitoring
 ```
 
 
